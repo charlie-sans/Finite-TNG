@@ -1,4 +1,4 @@
-/* Glitch background effect styles */
+
 .bg-glitch-container {
     position: fixed;
     inset: 0;
@@ -70,11 +70,12 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    /* background-color: #fff; */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
     min-height: 100vh;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+    border-left: 1px solid #444444;
+    border-right: 1px solid #444444;
+    
 }
 
 /* Header with gradient and reflection */

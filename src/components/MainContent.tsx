@@ -2,6 +2,48 @@ import React from 'react';
 import { ResearchAreas, ResearchHighlight, ResearchPublications } from './Research';
 import PrismaticBurst from './PrismaticBurst';
 
+export const MainPage = ({ CValue }: { CValue: string }) => {
+    return (
+            <div className="bg-content">
+                <div className="container" style={{position: "relative", zIndex: 1}}>
+                    <header>
+                        <div className="header-content">
+                            <div className="logo">
+                                <div>
+                                    <div className="logo-text">F<span className="logo-accent">INITE</span></div>
+                                    <div className="tagline">Advanced Research & Development Group</div>
+                                </div>
+                            </div>
+                            <div className="glass-panel">
+                                <div style={{fontSize: "0.9rem", color: "#333"}}>{CValue}</div>
+                                <div style={{fontWeight: "bold", color: "#A902DB"}}>Innovating Tomorrow</div>
+                            </div>
+                        </div>
+                        <nav>
+                            <ul className="nav-menu">
+                                <a href="/"><li className="nav-item active">Home</li></a>
+                                <a href="/research"><li className="nav-item"> Research</li></a>
+                                <a href="/Docs"><li className="nav-item">Publications</li></a>
+                                <a href="/team"><li className="nav-item">Team <span className="badge">New</span></li></a>
+                                <a href="/partners"><li className="nav-item">Partners</li></a>
+                                <li className="nav-item"> <a id="contact" href="#contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </header>
+                    <MainContent ></MainContent>
+                    <footer>
+                        <div className="footer-links">
+                            <a href="/privacy">Privacy Statement</a>
+                            <a href="/tos">Terms of Use</a>
+                            <a id="contact" href="#contact">Contact</a>
+                        </div>
+                        <p>{CValue} All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+   
+    );
+};
 export const MainContent = () => {
     const [showContact, setShowContact] = React.useState(false);
     document.getElementById('contact')?.addEventListener('click', () => {

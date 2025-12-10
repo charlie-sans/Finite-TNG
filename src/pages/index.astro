@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { MainContent } from "../components/MainContent"
-
+import { MainContent, MainPage } from "../components/MainContent"
+import GlassSurface from '../components/GlassSurface';
 import LetterGlitch from '../components/Templates/LetterGlitch';
 import "../assets/index.css"
 const CValue = "2024-2026 © Finite Research Group";
 // replace main body with contact form and info
 
-
+const optimised = import.meta.env.PROD;
 ---
 
 <style>
@@ -15,6 +15,7 @@ const CValue = "2024-2026 © Finite Research Group";
         text-decoration: none;
         color: inherit;
     }
+
 </style>
 
 <html lang="en">
@@ -26,46 +27,19 @@ const CValue = "2024-2026 © Finite Research Group";
 </head>
 
 <body style="margin:0; padding:0; min-height:100vh; position:relative; overflow-x:hidden;">
+    
     <div class="bg-glitch-container">
         <LetterGlitch className="bg-glitch-effect" client:load />
     </div>
-    <div class="bg-content">
-        <div class="container" style="position:relative; z-index:1;">
-            <header>
-                <div class="header-content">
-                    <div class="logo">
-                        <div>
-                            <div class="logo-text">F<span class="logo-accent">INITE</span></div>
-                            <div class="tagline">Advanced Research & Development Group</div>
-                        </div>
-                    </div>
-                    <div class="glass-panel">
-                        <div style="font-size: 0.9rem; color: #333;">{CValue}</div>
-                        <div style="font-weight: bold; color: #A902DB;">Innovating Tomorrow</div>
-                    </div>
-                </div>
-                <nav>
-                    <ul class="nav-menu">
-                        <li class="nav-item active"><a href="/">Home</a></li>
-                        <a href="/research"><li class="nav-item"> Research</li></a>
-                        <a href="/Docs"><li class="nav-item">Publications</li></a>
-                        <a href="/team"><li class="nav-item">Team <span class="badge">New</span></li></a>
-                        <li class="nav-item"> <a href="/partners">Partners</a></li>
-                        <li class="nav-item"> <a id="contact" href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <MainContent client:only="react"></MainContent>
-            <footer>
-                <div class="footer-links">
-                    <a href="/privacy">Privacy Statement</a>
-                    <a href="/tos">Terms of Use</a>
-                    <a id="contact" href="#contact">Contact</a>
-                </div>
-                <p>{CValue} All rights reserved.</p>
-
-            </footer>
-        </div>
-    </div>
+    
+    {!optimised && (
+        <GlassSurface client:only="react" className="bg-glass-panel glass-surface--center" borderRadius={0} height={1520} width={1200} blur={0} opacity={0.15}>
+            <MainPage client:only="react" CValue={CValue} />    
+        </GlassSurface>
+    )}
+    
+    {optimised && (
+        <MainPage client:only="react" CValue={CValue} />
+    )}
 </body>
 </html>
