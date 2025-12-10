@@ -3,10 +3,20 @@ import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import { MainContent } from "../components/MainContent"
 
-import LetterGlitch from '../components/LetterGlitch';
+import LetterGlitch from '../components/Templates/LetterGlitch';
 import "../assets/index.css"
+
+// replace main body with contact form and info
+
+
 ---
 
+<style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
 
 <html lang="en">
 <head>
@@ -37,23 +47,21 @@ import "../assets/index.css"
                 </div>
                 <nav>
                     <ul class="nav-menu">
-                        <li class="nav-item active">Home</li>
-                        <li class="nav-item">Research</li>
-                        <li class="nav-item">Publications</li>
-                        <li class="nav-item">Team <span class="badge">New</span></li>
-                        <li class="nav-item">Partners</li>
-                        <li class="nav-item">Contact</li>
+                        <li class="nav-item active"><a href="/">Home</a></li>
+                        <a href="/research"><li class="nav-item"> Research</li></a>
+                        <a href="/Docs"><li class="nav-item">Publications</li></a>
+                        <a href="/team"><li class="nav-item">Team <span class="badge">New</span></li></a>
+                        <li class="nav-item"> <a href="/partners">Partners</a></li>
+                        <li class="nav-item"> <a id="contact" href="#contact">Contact</a></li>
                     </ul>
                 </nav>
             </header>
-            <MainContent></MainContent>
+            <MainContent client:only="react"></MainContent>
             <footer>
                 <div class="footer-links">
-                    <a href="#">Privacy Statement</a>
-                    <a href="#">Terms of Use</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Site Map</a>
-                    <a href="#">Accessibility</a>
+                    <a href="/privacy">Privacy Statement</a>
+                    <a href="/tos">Terms of Use</a>
+                    <a id="contact" href="#contact">Contact</a>
                 </div>
                 <p>© 2005-2023 Finite Research Group. All rights reserved.</p>
                 <p style="font-size: 0.9rem; color: #888; margin-top: 10px;">Microsoft Windows Vista and Office 2007 inspired design theme</p>

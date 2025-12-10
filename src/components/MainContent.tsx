@@ -1,23 +1,51 @@
+import React from 'react';
+import { ResearchHighlight } from './Research';
+import PrismaticBurst from './PrismaticBurst';
+
 export const MainContent = () => {
-    return (<><main>
+    const [showContact, setShowContact] = React.useState(false);
+    document.getElementById('contact')?.addEventListener('click', () => {
+        if (!showContact)
+            setShowContact(true);
+        else setShowContact(false);
+    });
+
+    return (<>
+
+    <main>
         <div className="main-content">
             <div className="content-box">
+            {/* if yes, show contact form. else show main content */}
+            {showContact && (
+                <div id="contact" className="contact-form">
+                    <h2>Contact Us</h2>
+                    <form>
+                        <label>Name:</label>
+                        <input type="text" name="name" required />
+                        <label>Email:</label>
+                        <input type="email" name="email" required />
+                        <label>Message:</label>
+                        <textarea name="message" required></textarea>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            )}
+        {!showContact && <>
                 <h2>Welcome to Finite R&D</h2>
                 <p>At Finite Research Group, we push the boundaries of technology and innovation. Our interdisciplinary team works on cutting-edge projects in computational sciences, advanced materials, and future technologies.</p>
 
                 <div className="research-highlight">
-                    <h3>Current Focus: Quantum Computing Algorithms</h3>
-                    <p>Our team is developing novel quantum algorithms that could revolutionize data processing and encryption. This research has potential applications in secure communications and complex system modeling.</p>
-                    <a href="#" className="btn btn-primary" style={{marginTop: "10px"}}>Learn More</a>
+                    <ResearchHighlight />
                 </div>
 
                 <h3>Latest Breakthrough</h3>
                 <p>We recently announced a breakthrough in energy-efficient computing architectures that reduce power consumption by 40% while maintaining peak performance. This technology has immediate applications in data centers and high-performance computing environments.</p>
 
                 <div style={{marginTop: "20px"}}>
-                    <a href="#" className="btn">View All Projects</a>
+                    <a href="/Projects" className="btn">View All Projects</a>
                     <a href="#" className="btn btn-primary" style={{marginLeft: "10px"}}>Annual Report 2023</a>
                 </div>
+                </>}
             </div>
 
             <div className="content-box">

@@ -308,7 +308,7 @@ class IcosahedronGeometry extends Geometry {
 }
 
 class DiscGeometry extends Geometry {
-  constructor(steps = 4, radius = 1) {
+  constructor(steps = 8, radius = 1) {
     super();
     steps = Math.max(4, steps);
 
@@ -475,8 +475,8 @@ class ArcballControl {
     let snapRotation = quat.create();
 
     if (this.isPointerDown) {
-      const INTENSITY = 0.3 * timeScale;
-      const ANGLE_AMPLIFICATION = 5 / timeScale;
+      const INTENSITY = 0.1 * timeScale;
+      const ANGLE_AMPLIFICATION = 3 / timeScale;
 
       const midPointerPos = vec2.sub(vec2.create(), this.pointerPos, this.previousPointerPos);
       vec2.scale(midPointerPos, midPointerPos, INTENSITY);
@@ -661,7 +661,7 @@ class InfiniteGridMenu {
       uAtlasSize: gl.getUniformLocation(this.discProgram, 'uAtlasSize')
     };
 
-    this.discGeo = new DiscGeometry(56, 1);
+    this.discGeo = new DiscGeometry(6,1);
     this.discBuffers = this.discGeo.data;
     this.discVAO = makeVertexArray(
       gl,
@@ -803,7 +803,7 @@ class InfiniteGridMenu {
       this.control.rotationAxis[0],
       this.control.rotationAxis[1],
       this.control.rotationAxis[2],
-      this.smoothRotationVelocity * 1.1
+      this.smoothRotationVelocity
     );
 
     gl.uniform1i(this.discLocations.uItemCount, this.items.length);
@@ -850,8 +850,8 @@ class InfiniteGridMenu {
   }
 
   #onControlUpdate(deltaTime) {
-    const timeScale = deltaTime / this.TARGET_FRAME_DURATION + 0.0001;
-    let damping = 5 / timeScale;
+    const timeScale = deltaTime / this.TARGET_FRAME_DURATION + 0.00001;
+    let damping = 10 / timeScale;
     let cameraTargetZ = 3;
 
     const isMoving = this.control.isPointerDown || Math.abs(this.smoothRotationVelocity) > 0.01;
@@ -947,7 +947,13 @@ export default function InfiniteMenu({ items = [] }) {
     if (activeItem.link.startsWith('http')) {
       window.open(activeItem.link, '_blank');
     } else {
-      console.log('Internal route:', activeItem.link);
+      // For internal paths, use window.location or a router if available
+      if (activeItem.link.startsWith('/')) {
+        window.location.href = activeItem.link;
+      } else {
+        // fallback for relative paths
+        window.location.href = `/${activeItem.link}`;
+      }
     }
   };
 
