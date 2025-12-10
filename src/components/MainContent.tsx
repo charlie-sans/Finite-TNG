@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResearchHighlight } from './Research';
+import { ResearchAreas, ResearchHighlight, ResearchPublications } from './Research';
 import PrismaticBurst from './PrismaticBurst';
 
 export const MainContent = () => {
@@ -9,6 +9,18 @@ export const MainContent = () => {
             setShowContact(true);
         else setShowContact(false);
     });
+    
+    function onformsubmit(e: React.FormEvent) {
+        e.preventDefault();
+        // grab all the data, form a email body then load it up in the users email client
+        const form = e.target as HTMLFormElement;
+        const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+        const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+        const message = (form.elements.namedItem('message') as HTMLInputElement).value;
+        const subject = `Contact Form Submission from ${name}`;
+        const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+        window.location.href = `mailto:Developers@finite.ovh?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
 
     return (<>
 
@@ -64,23 +76,10 @@ export const MainContent = () => {
         </div>
 
         <div className="sidebar">
-            <h3>Research Areas</h3>
-            <ul>
-                <li>Quantum Computing</li>
-                <li>Advanced Materials</li>
-                <li>Artificial Intelligence</li>
-                <li>Biotechnology</li>
-                <li>Renewable Energy Systems</li>
-                <li>Space Technologies</li>
-            </ul>
+                <ResearchAreas/>
 
-            <h3>Recent Publications</h3>
-            <ul>
-                <li>"Quantum Algorithms for Optimization" - Nature</li>
-                <li>"Metamaterials for Energy Harvesting" - Science</li>
-                <li>"AI-driven Drug Discovery" - Cell</li>
-                <li>"Sustainable Computing Architectures" - IEEE</li>
-            </ul>
+                <ResearchPublications />
+            
 
             <h3>Quick Links</h3>
             <div style={{display: "flex", flexDirection: "column", gap: "10px"}}>

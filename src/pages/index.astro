@@ -1,11 +1,10 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 import { MainContent } from "../components/MainContent"
 
 import LetterGlitch from '../components/Templates/LetterGlitch';
 import "../assets/index.css"
-
+const CValue = "2024-2026 © Finite Research Group";
 // replace main body with contact form and info
 
 
@@ -41,7 +40,7 @@ import "../assets/index.css"
                         </div>
                     </div>
                     <div class="glass-panel">
-                        <div style="font-size: 0.9rem; color: #333;">Est. 2005</div>
+                        <div style="font-size: 0.9rem; color: #333;">{CValue}</div>
                         <div style="font-weight: bold; color: #A902DB;">Innovating Tomorrow</div>
                     </div>
                 </div>
@@ -63,8 +62,8 @@ import "../assets/index.css"
                     <a href="/tos">Terms of Use</a>
                     <a id="contact" href="#contact">Contact</a>
                 </div>
-                <p>© 2005-2023 Finite Research Group. All rights reserved.</p>
-                <p style="font-size: 0.9rem; color: #888; margin-top: 10px;">Microsoft Windows Vista and Office 2007 inspired design theme</p>
+                <p>{CValue} All rights reserved.</p>
+
             </footer>
         </div>
     </div>
