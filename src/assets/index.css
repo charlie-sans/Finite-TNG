@@ -1,0 +1,327 @@
+/* Glitch background effect styles */
+.bg-glitch-container {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.bg-glitch-effect {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+.bg-content {
+    position: relative;
+    z-index: 1;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ece9d8;
+    color: #333;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, #f1f1f1 0%, #e5e5e5 100%);
+    background-attachment: fixed;
+}
+
+/* Main container with classic 2007 layout */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    min-height: 100vh;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+/* Header with gradient and reflection */
+header {
+    background: linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 100%);
+    color: white;
+    padding: 25px 30px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 4px solid #A902DB;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-text {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to bottom, #fff 0%, #ccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-accent {
+    color: #A902DB;
+    -webkit-text-fill-color: #A902DB;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+/* Navigation with glass effect */
+nav {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    gap: 3px;
+}
+
+.nav-item {
+    padding: 12px 24px;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    background: rgba(169, 2, 219, 0.3);
+    border: 1px solid rgba(169, 2, 219, 0.5);
+}
+
+.nav-item.active {
+    background: linear-gradient(to bottom, #A902DB 0%, #8A02BB 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Main content area */
+main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* Content boxes with classic 2007 styling */
+.content-box {
+    background: linear-gradient(to bottom, #f9f9f9 0%, #f0f0f0 100%);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.content-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #A902DB 0%, #5A02AB 100%);
+}
+
+.content-box h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.content-box h3 {
+    color: #A902DB;
+    font-size: 1.4rem;
+    margin: 15px 0 10px;
+}
+
+.content-box p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Sidebar with glass effect */
+.sidebar {
+    background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.sidebar li {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    background: white;
+    border-radius: 4px;
+    border-left: 4px solid #A902DB;
+    transition: all 0.2s;
+}
+
+.sidebar li:hover {
+    background: #f0f0f0;
+    transform: translateX(3px);
+}
+
+/* Button styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(to bottom, #6d6d6d 0%, #4a4a4a 100%);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #333;
+}
+
+.btn:hover {
+    background: linear-gradient(to bottom, #7d7d7d 0%, #5a5a5a 100%);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+    background: linear-gradient(to bottom, #A902DB 0%, #8A02BB 100%);
+    border: 1px solid #7A02AB;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to bottom, #B902EB 0%, #9A02CB 100%);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to bottom, #2a2a2a 0%, #1a1a1a 100%);
+    color: #aaa;
+    padding: 25px 30px;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+    border-top: 4px solid #A902DB;
+    margin-top: 30px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #A902DB;
+}
+
+/* 2007-style badges */
+.badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background: linear-gradient(to bottom, #ffd700 0%, #ffaa00 100%);
+    color: #333;
+    font-weight: bold;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    border: 1px solid #cc9900;
+}
+
+/* Glass panel effect */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Research highlights */
+.research-highlight {
+    background: linear-gradient(to right, rgba(169, 2, 219, 0.1) 0%, rgba(169, 2, 219, 0.05) 100%);
+    border-left: 4px solid #A902DB;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Responsive design for 2007 - basic */
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+    }
+}

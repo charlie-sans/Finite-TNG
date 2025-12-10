@@ -1,11 +1,64 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { MainContent } from "../components/MainContent"
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import LetterGlitch from '../components/LetterGlitch';
+import "../assets/index.css"
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finite Research Group - R&D Division</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap">
+</head>
+
+<body style="margin:0; padding:0; min-height:100vh; position:relative; overflow-x:hidden;">
+    <div class="bg-glitch-container">
+        <LetterGlitch className="bg-glitch-effect" client:load />
+    </div>
+    <div class="bg-content">
+        <div class="container" style="position:relative; z-index:1;">
+            <header>
+                <div class="header-content">
+                    <div class="logo">
+                        <div>
+                            <div class="logo-text">F<span class="logo-accent">INITE</span></div>
+                            <div class="tagline">Advanced Research & Development Group</div>
+                        </div>
+                    </div>
+                    <div class="glass-panel">
+                        <div style="font-size: 0.9rem; color: #333;">Est. 2005</div>
+                        <div style="font-weight: bold; color: #A902DB;">Innovating Tomorrow</div>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li class="nav-item active">Home</li>
+                        <li class="nav-item">Research</li>
+                        <li class="nav-item">Publications</li>
+                        <li class="nav-item">Team <span class="badge">New</span></li>
+                        <li class="nav-item">Partners</li>
+                        <li class="nav-item">Contact</li>
+                    </ul>
+                </nav>
+            </header>
+            <MainContent></MainContent>
+            <footer>
+                <div class="footer-links">
+                    <a href="#">Privacy Statement</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Site Map</a>
+                    <a href="#">Accessibility</a>
+                </div>
+                <p>© 2005-2023 Finite Research Group. All rights reserved.</p>
+                <p style="font-size: 0.9rem; color: #888; margin-top: 10px;">Microsoft Windows Vista and Office 2007 inspired design theme</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
