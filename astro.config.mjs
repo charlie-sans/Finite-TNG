@@ -12,6 +12,7 @@ import db from '@astrojs/db';
 // https://astro.build/config
 export default defineConfig({
   integrations: [vue(), react(), db()],
+  output: 'server',
 
   vite: {
     plugins: [tailwindcss()]

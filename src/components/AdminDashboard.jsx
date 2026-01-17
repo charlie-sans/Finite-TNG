@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-export function AdminDashboard() {
+export const AdminDashboard = () => {
     const [admin, setAdmin] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -42,6 +42,67 @@ export function AdminDashboard() {
         localStorage.removeItem('adminToken');
         window.location.href = '/admin-login';
     };
+
+    // File manager state
+    const [fileList, setFileList] = useState([]);
+    const [selected, setSelected] = useState('');
+    const [content, setContent] = useState('');
+    const [statusMsg, setStatusMsg] = useState('');
+
+    async function loadList() {
+        try {
+            const res = await fetch('/api/content/list');
+            const j = await res.json();
+            if (j.ok) setFileList(j.entries || []);
+            else setStatusMsg('Failed to list: ' + (j.error || 'unknown'));
+        } catch (e) {
+            setStatusMsg('Failed to list files');
+        }
+    }
+
+    async function loadFile(path) {
+        try {
+            const res = await fetch('/api/content/read?path=' + encodeURIComponent(path));
+            const j = await res.json();
+            if (j.ok) {
+                setSelected(path);
+                setContent(j.content || '');
+                setStatusMsg('Loaded ' + path);
+            } else {
+                setStatusMsg('Failed to load: ' + (j.error || 'unknown'));
+            }
+        } catch (e) {
+            setStatusMsg('Failed to load file');
+        }
+    }
+
+    async function saveFile() {
+        if (!selected) {
+            setStatusMsg('No file selected');
+            return;
+        }
+        try {
+            const res = await fetch('/api/content/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ path: selected, content })
+            });
+            const j = await res.json();
+            if (j.ok) {
+                setStatusMsg('Saved ' + selected);
+                loadList();
+            } else {
+                setStatusMsg('Save failed: ' + (j.error || 'unknown'));
+            }
+        } catch (e) {
+            setStatusMsg('Save failed');
+        }
+    }
+
+    // load file list once authenticated
+    useEffect(() => {
+        if (!loading && isAdmin) loadList();
+    }, [loading, isAdmin]);
 
     if (loading) {
         return (
@@ -131,12 +192,67 @@ export function AdminDashboard() {
                     </div>
                 </div>
 
-                {/* Content Section */}
+                {/* Content Section: File Manager */}
                 <div className="mt-8 bg-gray-800 rounded-lg p-6 border border-gray-700">
-                    <h2 className="text-2xl font-bold text-white mb-4">Dashboard Content</h2>
-                    <p className="text-gray-400">
-                        Add your admin content here. This area is only accessible to authenticated administrators.
-                    </p>
+                    <h2 className="text-2xl font-bold text-white mb-4">Content Manager</h2>
+                    <div className="grid md:grid-cols-3 gap-4">
+                        <div className="md:col-span-1 bg-gray-900 p-4 rounded">
+                            <div className="mb-3 flex justify-between items-center">
+                                <h3 className="text-white font-semibold">Files</h3>
+                                <button
+                                    onClick={async () => { loadList(); }}
+                                    className="text-sm text-gray-300 hover:text-white"
+                                >
+                                    Refresh
+                                </button>
+                            </div>
+                            <div className="max-h-64 overflow-auto">
+                                {fileList?.length ? (
+                                    fileList.map((f) => (
+                                        <div
+                                            key={f.path}
+                                            className={`p-2 rounded cursor-pointer hover:bg-gray-700 ${selected === f.path ? 'bg-gray-700' : ''}`}
+                                            onClick={() => loadFile(f.path)}
+                                        >
+                                            <div className="text-sm text-gray-200">{f.name}</div>
+                                            <div className="text-xs text-gray-400">{f.type}</div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="text-gray-400">No files found</div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="md:col-span-2 bg-gray-900 p-4 rounded">
+                            <div className="flex items-start justify-between mb-2">
+                                <div>
+                                    <h3 className="text-white font-semibold">Editor</h3>
+                                    <div className="text-xs text-gray-400">Editing: {selected || '—'}</div>
+                                </div>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={async () => { await saveFile(); }}
+                                        className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded"
+                                    >
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+
+                            <textarea
+                                value={content}
+                                onChange={(e) => setContent(e.target.value)}
+                                className="w-full h-64 bg-gray-800 text-white p-3 rounded font-mono text-sm"
+                                placeholder="Select a file from the left to edit"
+                            />
+
+                            <div className="mt-4">
+                                <h4 className="text-white font-medium">Preview (raw)</h4>
+                                <pre className="whitespace-pre-wrap text-sm text-gray-200 bg-gray-800 p-3 rounded max-h-64 overflow-auto">{content}</pre>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

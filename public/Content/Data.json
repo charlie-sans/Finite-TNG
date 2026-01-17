@@ -1,0 +1,8 @@
+{
+    "last-updated": "11-12-2025",
+    "datapaths": {
+        "researchPapers": "/Content/researchPapers.json",
+        "teamMembers": "/Content/teamMembers.json",
+        "partners": "/Content/partners.json"
+    }
+}

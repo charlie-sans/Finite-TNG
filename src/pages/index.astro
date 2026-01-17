@@ -1,13 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { MainContent, MainPage } from "../components/MainContent"
-import GlassSurface from '../components/GlassSurface';
+import GlassSurface from '../components/Templates/GlassSurface';
 import LetterGlitch from '../components/Templates/LetterGlitch';
 import "../assets/index.css"
 const CValue = "2024-2026 © Finite Research Group";
-// replace main body with contact form and info
-
-const optimised = import.meta.env.PROD;
+const optimised = true;
 ---
 
 <style>
@@ -15,13 +13,17 @@ const optimised = import.meta.env.PROD;
         text-decoration: none;
         color: inherit;
     }
-
 </style>
 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finite Research Group - R&D Division">
+    <meta name="author" content="Finite Research Group">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Finite, Research, Group, R&D, Technology, Innovation, Science, Development">
+    <meta name="robots" content="index, follow">
     <title>Finite Research Group - R&D Division</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap">
 </head>

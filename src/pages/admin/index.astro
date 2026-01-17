@@ -1,0 +1,176 @@
+---
+import DashboardSidebar from '../../components/DashboardSidebar';
+import Layout from '../../layouts/Layout.astro';
+import StatsCard from '../../components/StatsCard';
+import DataTable from '../../components/DataTable';
+import AdLayout from '../../layouts/AdminLayout.astro';
+
+const activePath = '/admin';
+---
+
+<AdLayout title="Dashboard">
+  <div class="admin-container">
+    <DashboardSidebar client:load activePath={activePath} />
+    
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Dashboard Overview</h1>
+        <div class="header-actions">
+          <button class="btn btn-primary">
+            <i class="fas fa-plus"></i> New Item
+          </button>
+          <div class="user-menu">
+            <img src="/avatar.jpg" alt="Admin" />
+          </div>
+        </div>
+      </header>
+      
+      <div class="stats-grid">
+        <StatsCard 
+          title="Total Users" 
+          value="1,254" 
+          change="+12%" 
+          icon="users"
+          color="blue"
+        />
+        <StatsCard 
+          title="Revenue" 
+          value="$24,580" 
+          change="+8%" 
+          icon="dollar-sign"
+          color="green"
+        />
+        <StatsCard 
+          title="Conversion Rate" 
+          value="3.2%" 
+          change="-2%" 
+          icon="chart-line"
+          color="purple"
+        />
+        <StatsCard 
+          title="Active Sessions" 
+          value="342" 
+          change="+5%" 
+          icon="user-check"
+          color="orange"
+        />
+      </div>
+      
+      <div class="content-grid">
+        <section class="card">
+          <div class="card-header">
+            <h3>Recent Activity</h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <DataTable client:load />
+        </section>
+        
+        <section class="card">
+          <div class="card-header">
+            <h3>Quick Stats</h3>
+          </div>
+          <div class="quick-stats">
+            {/* Add quick stats here */}
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</AdLayout>
+
+<style>
+  .admin-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f7fafc;
+  }
+  
+  .admin-main {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .admin-header h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1a202c;
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background: #4299e1;
+    color: white;
+  }
+  
+  .user-menu img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .card-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+  }
+  
+  .view-all {
+    color: #4299e1;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+</style>
