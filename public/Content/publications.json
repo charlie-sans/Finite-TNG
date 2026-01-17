@@ -1,20 +1,8 @@
 [
     {
-        "title": "Finite TNG: A Next-Generation Computing Platform",
-        "authors": ["Carson Coder", "Altruist", "Charlie-san"],
-        "year": 2024,
-        "link": "https://example.com/finite-tng-paper"
-    },
-    {
-        "title": "Finite TNG: A Next-Generation Computing Platform",
-        "authors": ["Carson Coder", "Altruist", "Charlie-san"],
-        "year": 2024,
-        "link": "https://example.com/finite-tng-paper"
-    },
-    {
-        "title": "Object-Oriented Intermediate Representation for Multi-Language Support",
+        "title": "ObjectIR: Language Specification and Implementation",
         "authors": ["Carson Coder", "Charlie-san"],
-        "year": 2023,
-        "link": "https://example.com/oo-ir-paper"
+        "year": 2026,
+        "link": "/PDF/ObjectIR.pdf"
     }
 ]
