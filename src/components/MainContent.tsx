@@ -22,15 +22,29 @@ export const MainPage = ({ CValue }: { CValue: string }) => {
                             <div style={{ fontWeight: "bold", color: "#A902DB" }}>Innovating Tomorrow</div>
                         </div>
                     </div>
-                    <nav>
-                        <ul className="nav-menu">
-                            <button onClick={() => setCurrentPage("default")}><li className="nav-item">Home</li></button>
-                            <button onClick={() => setCurrentPage("research")}><li className="nav-item"> Research</li></button>
-                            <button onClick={() => setCurrentPage("publications")}><li className="nav-item">Publications</li></button>
-                            <button onClick={() => setCurrentPage("team")}><li className="nav-item">Team <span className="badge">New</span></li></button>
-                            <button onClick={() => setCurrentPage("partners")}><li className="nav-item">Partners</li></button>
-                            <button onClick={() => setCurrentPage("Contact")}><li className="nav-item"> Contact</li></button>
-                            <li><a href='/admin-login'>Login</a></li>
+                    <nav aria-label="Main navigation">
+                        <ul className="nav-menu" role="menubar">
+                            <li role="none">
+                                <button role="menuitem" className={`nav-item ${currentPage === "default" ? 'active' : ''}`} onClick={() => setCurrentPage("default")}>Home</button>
+                            </li>
+                            <li role="none">
+                                <button role="menuitem" className={`nav-item ${currentPage === "research" ? 'active' : ''}`} onClick={() => setCurrentPage("research")}>Research</button>
+                            </li>
+                            <li role="none">
+                                <button role="menuitem" className={`nav-item ${currentPage === "publications" ? 'active' : ''}`} onClick={() => setCurrentPage("publications")}>Publications</button>
+                            </li>
+                            <li role="none">
+                                <button role="menuitem" className={`nav-item ${currentPage === "team" ? 'active' : ''}`} onClick={() => setCurrentPage("team")}>Team <span className="badge">New</span></button>
+                            </li>
+                            <li role="none">
+                                <button role="menuitem" className={`nav-item ${currentPage === "partners" ? 'active' : ''}`} onClick={() => setCurrentPage("partners")}>Partners</button>
+                            </li>
+                            <li role="none">
+                                <button role="menuitem" className={`nav-item ${currentPage === "Contact" ? 'active' : ''}`} onClick={() => setCurrentPage("Contact")}>Contact</button>
+                            </li>
+                            <li role="none">
+                                <a className="nav-item" href="/admin-login">Login</a>
+                            </li>
                         </ul>
                     </nav>
                 </header>
@@ -59,12 +73,12 @@ const DefaultContent = () => {
             </div>
 
             <h3>Latest Breakthrough</h3>
-            <p>We recently announced a breakthrough in energy-efficient computing architectures that reduce power consumption by 40% while maintaining peak performance. This technology has immediate applications in data centers and high-performance computing environments.</p>
-
+            <p>Nothing right now, but check back later and we might have something!</p>
+{/* 
             <div style={{ marginTop: "20px" }}>
                 <a href="/Projects" className="btn">View All Projects</a>
                 <a href="#" className="btn btn-primary" style={{ marginLeft: "10px" }}>Annual Report 2023</a>
-            </div>
+            </div> */}
             </>
     );
 }
@@ -167,8 +181,8 @@ export const MainContent = ({ currentPage, setCurrentPage }: { currentPage: "def
 
                 <div className="content-box">
                     <h2>Upcoming Events</h2>
-
-                    <h3>International Tech Symposium 2023</h3>
+                    <p>We do not have any events at the moment.</p>
+                    {/* <h3>International Tech Symposium 2023</h3>
                     <p>Our team will be presenting three papers at the upcoming International Tech Symposium in November. Join us for presentations on quantum computing applications and sustainable tech innovations.</p>
 
                     <h3>Finite Open House</h3>
@@ -176,7 +190,7 @@ export const MainContent = ({ currentPage, setCurrentPage }: { currentPage: "def
 
                     <div style={{ marginTop: "20px", textAlign: "center" }}>
                         <a href="#" className="btn btn-primary">Register for Events</a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -187,11 +201,11 @@ export const MainContent = ({ currentPage, setCurrentPage }: { currentPage: "def
 
 
                 <h3>Quick Links</h3>
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                {/* <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                     <a href="#" className="btn">Career Opportunities</a>
                     <a href="#" className="btn">Research Grants</a>
                     <a href="#" className="btn btn-primary">Collaborate With Us</a>
-                </div>
+                </div> */}
             </div>
         </main></>)
 }
