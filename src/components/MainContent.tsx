@@ -40,7 +40,7 @@ export const MainPage = ({ CValue }: { CValue: string }) => {
                                 <button role="menuitem" className={`nav-item ${currentPage === "partners" ? 'active' : ''}`} onClick={() => setCurrentPage("partners")}>Partners</button>
                             </li>
                             <li role="none">
-                                <button role="menuitem" className={`nav-item ${currentPage === "Contact" ? 'active' : ''}`} onClick={() => setCurrentPage("Contact")}>Contact</button>
+                                <button role="menuitem" className={`nav-item ${currentPage === "Contact" ? 'active' : ''}`} onClick={() => {window.location.href = "https://discord.gg/mVy6m6x2dU"} }>Contact</button>
                             </li>
                             <li role="none">
                                 <a className="nav-item" href="/admin-login">Login</a>
