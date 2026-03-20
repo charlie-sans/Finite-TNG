@@ -12,9 +12,15 @@
         "link": "/Docs/ObjectIRV2.pdf"
     },
     {
-        "title": "ObjectIR Version 2: The Expanse Update For lattice",
+        "title": "ObjectIR Version 2, C# edition: The Expanse Update",
         "authors": ["Charlie-san"],
         "year": 2026,
-        "link": "/Docs/ObjectIRV2_lattice.pdf"
+        "link": "/Docs/ObjectIRV2_CSharp.pdf"
+    },
+    {
+        "title": "Lattice Research Runtime: Specification and Implementation",
+        "authors": ["Charlie-san"],
+        "year": 2026,
+        "link": "/Docs/LatticeResearchRuntime.pdf"
     }
 ]
