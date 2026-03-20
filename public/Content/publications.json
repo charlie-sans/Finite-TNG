@@ -1,8 +1,20 @@
 [
     {
         "title": "ObjectIR: Language Specification and Implementation",
-        "authors": ["Carson Coder", "Charlie-san"],
+        "authors": ["Charlie-san"],
         "year": 2026,
-        "link": "/PDF/ObjectIR.pdf"
+        "link": "/Docs/ObjectIRV1.pdf"
+    },
+    {
+        "title": "ObjectIR Version 2: The Expanse Update",
+        "authors": ["Charlie-san"],
+        "year": 2026,
+        "link": "/Docs/ObjectIRV2.pdf"
+    },
+    {
+        "title": "ObjectIR Version 2: The Expanse Update For lattice",
+        "authors": ["Charlie-san"],
+        "year": 2026,
+        "link": "/Docs/ObjectIRV2_lattice.pdf"
     }
 ]

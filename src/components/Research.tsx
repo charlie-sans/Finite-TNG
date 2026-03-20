@@ -13,27 +13,85 @@ export const ResearchHighlight = () => {
 
 export const ResearchPublications = () => {
     const [data, setData] = useState<any[]>([]);
-    // Fetch publications data on component mount
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         fetch('/Content/publications.json')
-            .then(response => response.json())
-            .then(json => setData(json))
+            .then(response => {
+                if (!response.ok) throw new Error(response.statusText);
+                return response.json();
+            })
+            .then(json => setData(Array.isArray(json) ? json : []))
             .catch(error => {
                 console.error("Failed to fetch publications:", error);
                 setData([]);
-            });
+            })
+            .finally(() => setLoading(false));
     }, []);
+
+    const containerStyle: React.CSSProperties = {
+        background: "#ffffff",
+        border: "1px solid #e5e7eb",
+        padding: 16,
+        borderRadius: 8,
+        boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+        maxWidth: 760,
+    };
+
+    const listStyle: React.CSSProperties = { listStyle: "none", margin: 0, padding: 0 };
+    const itemStyle: React.CSSProperties = {
+        padding: "12px 8px",
+        borderBottom: "1px solid #f3f4f6",
+        display: "flex",
+        flexDirection: "column",
+    };
+    const titleStyle: React.CSSProperties = {
+        color: "#1f2937",
+        textDecoration: "none",
+        fontWeight: 600,
+        fontSize: 15,
+    };
+    const metaStyle: React.CSSProperties = { color: "#6b7280", fontSize: 12, marginTop: 6 };
+    const abstractStyle: React.CSSProperties = { color: "#374151", marginTop: 8, fontSize: 13 };
 
     return (
         <>
-            <h3>Recent Publications</h3>
-            <ul>
-                {data.map((element, idx) => (
-                    <li key={idx}>
-                        <a href={element.link || "#"}>{element.title || "Untitled"}</a>
-                    </li>
-                ))}
-            </ul>
+            <div style={containerStyle}>
+                <h3 style={{ marginTop: 0 }}>Recent Publications</h3>
+
+                {loading ? (
+                    <p>Loading publications…</p>
+                ) : data.length === 0 ? (
+                    <p>No publications found.</p>
+                ) : (
+                    <ul style={listStyle}>
+                        {data.map((element, idx) => {
+                            const title = element.title || "Untitled";
+                            const authors =
+                                element.authors && (Array.isArray(element.authors)
+                                    ? element.authors.join(", ")
+                                    : element.authors);
+                            const year = element.year || element.date || "";
+                            return (
+                                <li key={idx} style={itemStyle}>
+                                    <a
+                                        href={element.link || "#"}
+                                        style={titleStyle}
+                                        target={element.link ? "_blank" : undefined}
+                                        rel={element.link ? "noopener noreferrer" : undefined}
+                                    >
+                                        {title}
+                                    </a>
+                                    {(authors || year) && (
+                                        <span style={metaStyle}>{[authors, year].filter(Boolean).join(" • ")}</span>
+                                    )}
+                                    {element.abstract && <p style={abstractStyle}>{element.abstract}</p>}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                )}
+            </div>
         </>
     );
 }

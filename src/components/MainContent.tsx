@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import { ResearchAreas, ResearchHighlight, ResearchPublications, Research } from './Research';
 import PrismaticBurst from './Templates/PrismaticBurst';
+import TeamPage from './Team';
 
 export const MainPage = ({ CValue }: { CValue: string }) => {
     const [currentPage, setCurrentPage] = useState<"default" | "research" | "publications" | "Contact" | "team" | "partners">("default");
@@ -26,10 +27,7 @@ export const MainPage = ({ CValue }: { CValue: string }) => {
                         <ul className="nav-menu" role="menubar">
                             <li role="none">
                                 <button role="menuitem" className={`nav-item ${currentPage === "default" ? 'active' : ''}`} onClick={() => setCurrentPage("default")}>Home</button>
-                            </li>
-                            <li role="none">
-                                <button role="menuitem" className={`nav-item ${currentPage === "research" ? 'active' : ''}`} onClick={() => setCurrentPage("research")}>Research</button>
-                            </li>
+                            </li>   
                             <li role="none">
                                 <button role="menuitem" className={`nav-item ${currentPage === "publications" ? 'active' : ''}`} onClick={() => setCurrentPage("publications")}>Publications</button>
                             </li>
@@ -88,9 +86,7 @@ const RoutingSystem = ({ currentPage, setCurrentPage }: { currentPage: "default"
         const setFromHash = () => {
             const path = window.location.hash;
             switch (path) {
-                case "#research":
-                    setCurrentPage("research");
-                    break;
+
                 case "#publications":
                     setCurrentPage("publications");
                     break;
@@ -117,9 +113,8 @@ const RoutingSystem = ({ currentPage, setCurrentPage }: { currentPage: "default"
     return (
         <>
             {currentPage === "default" && <DefaultContent />}
-            {currentPage === "research" && <Research />}
             {currentPage === "publications" && <ResearchPublications />}
-            {currentPage === "team" && <div><h2>Our Team</h2><p>Meet the brilliant minds behind Finite Research Group. Our team comprises experts in various fields dedicated to advancing technology and innovation.</p></div>}
+            {currentPage === "team" && <TeamPage/>}
             {currentPage === "partners" && <div><h2>Our Partners</h2><p>We collaborate with leading institutions and organizations worldwide to drive research and development in cutting-edge technologies.</p></div>}
         </>
     );
